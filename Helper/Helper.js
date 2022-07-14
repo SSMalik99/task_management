@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 const sendResponse = (status, message, data) => {
     return {
         "status_code" : status,
@@ -5,7 +7,11 @@ const sendResponse = (status, message, data) => {
         "data" : data
     }
 }
+const isValidMongoId = (id) => {
+    return mongoose.isValidObjectId(id)
+}
 
 module.exports = {
-    sendResponse
+    sendResponse,
+    isValidMongoId
     }

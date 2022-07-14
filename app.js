@@ -4,10 +4,12 @@ require('dotenv').config()
 const express = require('express')
 const taskRoute = require('./routes/task')
 const connectDb = require('./db/connect')
+const NotFound = require('./middleware/NotFound')
 const app = express()
 
-const port = 3999
+const port = process.env.PORT || 3999
 
+app.use(NotFound)
 app.use(express.static('./public'))
 app.use(express.json())
 app.get('/hello', (req, res) => {
